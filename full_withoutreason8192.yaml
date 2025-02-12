@@ -1,0 +1,48 @@
+seed: 42
+model_name_or_path: meta-llama/Llama-3.1-8B
+### method
+stage: sft
+do_train: true
+deepspeed: /home/n3/jongyeon/LLaMA-Factory/examples/deepspeed/ds_z3_offload_config.json  # choices: [ds_z0_config.json, ds_z2_config.json, ds_z3_config.json]
+finetuning_type: full
+### dataset
+dataset: s1K_withoutreasoning.json
+template: empty
+#cutoff_len: 4096
+cutoff_len: 8192
+max_samples: 1048576
+overwrite_cache: true
+preprocessing_num_workers: 4
+
+### output
+output_dir: /home/n3/jongyeon/thunder-sft/s1/meta-llama/Llama-3.1-8B_s1K_withoutreasoning/8192
+logging_steps: 10
+# save_strategy: epoch
+save_strategy: steps    # default
+save_steps: 100         # default
+plot_loss: true
+overwrite_output_dir: true
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 1
+learning_rate: 1.0e-5
+num_train_epochs: 5
+lr_scheduler_type: cosine
+warmup_steps: 16
+adam_beta1: 0.9
+adam_beta2: 0.95
+weight_decay: 1.0e-4
+# warmup_ratio: 0.1
+bf16: true
+ddp_timeout: 180000000
+
+### eval : no eval
+# val_size: 0.1
+# per_device_eval_batch_size: 1
+# eval_strategy: steps
+# eval_steps: 500
+
+### new field
+report_to: wandb
+run_name: meta-llama/Llama-3.1-8B_s1K_withoutreason_rank32_8192

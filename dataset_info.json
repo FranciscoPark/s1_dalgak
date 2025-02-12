@@ -1,0 +1,14 @@
+"s1K_withreasoning.json" : {
+      "file_name" : "/home/n3/jongyeon/thunder-sft/s1/s1K_reason.json",
+      "columns" : {
+          "query" : "question",
+          "response" : "response"
+      }
+  },
+  "s1K_withoutreasoning.json" : {
+        "file_name" :"/home/n3/jongyeon/thunder-sft/s1/s1K_without_reason.json",
+        "columns" : {
+            "query" : "question",
+            "response" : "attempt"
+        }
+    }
